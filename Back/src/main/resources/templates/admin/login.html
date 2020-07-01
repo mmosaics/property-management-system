@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>登陆</title>
+
+  <!-- Custom fonts for this template-->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+  <!-- Custom styles for this template-->
+  <link href="css/sb-admin.css" rel="stylesheet">
+
+</head>
+
+<body class="bg-dark">
+
+  <div class="container" id="loginArea">
+    <div class="card card-login mx-auto mt-5">
+      <div class="card-header">登陆</div>
+      <div class="card-body">
+        <form>
+          <div class="form-group">
+            <div class="form-label-group">
+              <input type="email" id="inputEmail" class="form-control" v-model="user.username" placeholder="邮箱" required="required" autofocus="autofocus">
+              <label for="inputEmail">用户名</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-label-group">
+              <input type="password" id="inputPassword" class="form-control" v-model="user.password" placeholder="密码" required="required">
+              <label for="inputPassword">密码</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" value="remember-me">
+                记住密码
+              </label>
+            </div>
+          </div>
+          <a class="btn btn-primary btn-block" href="#" @click="login()">登陆</a>
+        </form>
+        <div class="text-center">
+          <a class="d-block small mt-3" href="register.html">注册用户</a>
+          <a class="d-block small" href="forgot-password.html">忘记密码？</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Page level plugin JavaScript-->
+  <script src="vendor/datatables/jquery.dataTables.js"></script>
+  <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
+
+  <!-- Page level plugin JavaScript-->
+  <script src="vendor/chart.js/Chart.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="js/sb-admin.min.js"></script>
+
+  <!-- Demo scripts for this page-->
+  <script src="js/demo/datatables-demo.js"></script>
+
+  <script src="js/vue/2.5.16/vue.min.js"></script>
+  <script src="js/axios/0.17.1/axios.min.js"></script>
+  <script src="js/moment/2.22.2/moment.js"></script> <!-- vue.js 格式化日期用的 -->
+
+  <script src="js/utilJS/utils.js"></script>
+
+  <!-- 图表信息 -->
+  <script src="js/chartInfo/checkedInfoChart.js"></script>
+  <script src="js/chartInfo/manageFeeChart.js"></script>
+
+  <script>
+      $(function () {
+          var userData = {
+            url:'userlogin',
+            user: {
+              username: '',
+              password: ''
+            }
+          };
+
+          var vue = new Vue({
+              el:"#loginArea",
+              data: userData,
+              methods: {
+                  login: function () {
+                      var url = this.url;
+                      axios.post(url, this.user).then(function (value) {
+                          alert(value.data);
+                      })
+                  }
+              },
+
+          });
+
+      })
+  </script>
+
+</body>
+
+</html>
